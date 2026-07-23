@@ -28,7 +28,11 @@ for oee in oee_list:
 # 「危険な設備は◯件あります」と表示してください。
 # ヒント: count = 0 という変数を用意し、for文の中でif文を使って+1していく
 
+for oee in oee_list
+    if status = "危険"
+    count = count  + 1
 
+print(count)
 
 # ---------------------------------------------------------
 # パート2: 辞書(dict) — 「名前付きのデータのまとまり」
@@ -100,6 +104,10 @@ for line in lines[:3]:  # 最初の3行だけ表示
 # lines の中身を1行ずつ、カンマ(,)で分割して表示してみてください。
 # ヒント: line.split(",") を使うと、カンマ区切りでリストに分割できます
 # (1行目はヘッダーなので、結果が少し変な形になりますが気にしなくてOKです)
+
+for line in lines:
+    parts = line.strip().split(",")
+    print(parts)
 
 
 
