@@ -28,11 +28,12 @@ for oee in oee_list:
 # 「危険な設備は◯件あります」と表示してください。
 # ヒント: count = 0 という変数を用意し、for文の中でif文を使って+1していく
 
-for oee in oee_list
-    if status = "危険"
+for oee in oee_list:
+    status = calc_oee_status(oee)
+    if status == "危険":
     count = count  + 1
 
-print(count)
+print(f"危険な設備は{count}件あります")
 
 # ---------------------------------------------------------
 # パート2: 辞書(dict) — 「名前付きのデータのまとまり」
