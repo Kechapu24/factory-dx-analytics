@@ -27,12 +27,11 @@ for oee in oee_list:
 # oee_listの中から「危険」判定のものだけを数えて、
 # 「危険な設備は◯件あります」と表示してください。
 # ヒント: count = 0 という変数を用意し、for文の中でif文を使って+1していく
-
+count = 0
 for oee in oee_list:
     status = calc_oee_status(oee)
     if status == "危険":
-    count = count  + 1
-
+        count = count + 1
 print(f"危険な設備は{count}件あります")
 
 # ---------------------------------------------------------
@@ -59,8 +58,14 @@ print(f"稼働率: {uptime_rate:.1%}")
 # ■ 練習問題2
 # 自分で新しい辞書 equipment2 を作り、id="EQ-003", uptime_min=460, downtime_min=20 を入れてください。
 # その後、稼働率を計算して表示してください。
+equipment2 ={
+    "id" : "EQ-003",
+    "uptime_min" : 460,
+    "downtime_min" :20, 
+}
 
-
+uptime_rate2 = equipment2["uptime_min"] / (equipment2["uptime_min"] + equipment2["downtime_min"])
+print(f"稼働率：{uptime_rate2:.1%}")
 
 # ---------------------------------------------------------
 # パート3: リストの中に辞書を入れる(実務でよく使う形)
@@ -83,6 +88,12 @@ for eq in equipment_data:
 # ヒント: for文の中でrateを計算し、if文で90%(0.9)未満かどうか判定する
 
 
+for eq2 in equipment_data:
+    rate2 = eq2["uptime_min"] / (eq2["uptime_min"] + eq2["downtime_min"])
+    if rate2 < 0.9 :
+        print(f"{eq2['id']}: 稼働率 {rate2:.1%}")
+
+
 
 # ---------------------------------------------------------
 # パート4: ファイル操作(CSVを自力で読む)
@@ -97,6 +108,7 @@ with open("equipment_data.csv", "r", encoding="utf-8-sig") as f:
 print("\n--- CSVの中身(1行ずつ) ---")
 for line in lines[:3]:  # 最初の3行だけ表示
     print(line.strip())  # strip()で末尾の改行を取り除く
+    print (lines)
 
 # with open(...) as f: は「ファイルを開いて、処理が終わったら自動的に閉じる」という書き方です。
 # 閉じ忘れを防げるので、ファイル操作では基本的にこの書き方をします。
@@ -105,6 +117,8 @@ for line in lines[:3]:  # 最初の3行だけ表示
 # lines の中身を1行ずつ、カンマ(,)で分割して表示してみてください。
 # ヒント: line.split(",") を使うと、カンマ区切りでリストに分割できます
 # (1行目はヘッダーなので、結果が少し変な形になりますが気にしなくてOKです)
+with open("equipment_data.csv", "r", encoding="utf-8-sig") as f:
+    lines = f.readlines()
 
 for line in lines:
     parts = line.strip().split(",")
@@ -133,7 +147,8 @@ print(safe_divide(10, 0))   # ゼロ割り → 警告が出て0が返る
 # ■ 練習問題5
 # production_qty = 0 の設備があった場合を想定し、
 # defect_qty / production_qty(不良率の計算)を safe_divide関数を使って計算してみてください。
-
-
+defect_qty = 5 
+production_qty = 0 
+print (safe_divide(defect_qty,production_qty))
 print("\n★ 5つの練習問題、無理せず今日できるところまでで大丈夫です。")
 print("★ 次はいよいよ、これらを使って実際のOEE計算スクリプトを『自分で』書き直してみます。")
